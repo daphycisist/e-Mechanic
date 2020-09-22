@@ -6,8 +6,6 @@ import indexRouter from './routes/index'
 import userRouter from "./routes/user";
 // import database from './utilities/pg-config'
 
-import {login, signup, refresh} from './controller/userAuth'
-
 
 // const { auth } = database;
 const app = express();
@@ -34,8 +32,7 @@ app.use("/api/users", userRouter);
 const port = process.env.PORT || 8000;
 
 app.listen(port, () => {
-  console.log(process.env["DATABASE_URL"])
-    console.log(`Server started on http://localhost:${port}`)
+  console.log(`Server started on http://localhost:${port}`)
 })
 
 export default app;
