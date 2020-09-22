@@ -1,13 +1,9 @@
 import express, { Request, Response, NextFunction } from 'express'
-// import client from '../utilities/dbConnect'
-import database from '../utilities/pg-config'
+import {verifyToken} from "../controller/Auth";
 
-// const { db, sql } = database;
 const router = express.Router()
 
-
-
-router.get("/", function homepage(_req: Request ,res: Response) {
+router.get("/", verifyToken, (_req: Request ,res: Response) => {
     res.send("We're live")
 })
 
