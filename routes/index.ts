@@ -1,8 +1,7 @@
 import express, { Request, Response, NextFunction } from 'express'
-// import client from '../utilities/dbConnect'
+
 import database from '../utilities/pg-config'
 
-const { db, sql } = database;
 const router = express.Router()
 
 
