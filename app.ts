@@ -16,6 +16,7 @@ const app = express();
 // app.use("/login", login);
 // app.use("/refresh", refresh);
 
+import serviceRouter from "./routes/service";
 
 
 app.use(logger('tiny'))
@@ -27,6 +28,8 @@ app.use(express.urlencoded({ extended: false }))
 
 app.use("/", indexRouter);
 app.use("/api/users", userRouter);
+app.use("/", userRouter);
+app.use("/", serviceRouter);
 
 
 const port = process.env.PORT || 8000;
