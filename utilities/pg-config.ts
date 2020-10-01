@@ -1,14 +1,11 @@
-import connect, { sql } from '@databases/pg'
+import postgres from "postgres"
+//import connect, { sql } from '@databases/pg'
 import dotenv from 'dotenv'
 
+
 dotenv.config()
+const connectionstring = process.env.DATABASE_URL as string; 
 
-const db = connect();
-
-
-async function auth() {
-    await db.query(sql`SELECT 1=1`)
-    console.log('Server started succesfully'); 
-}
-
-export default { auth, db, sql };
+const sql = postgres(connectionstring);
+console.log("Connected to Database")
+export default sql

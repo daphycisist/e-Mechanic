@@ -1,7 +1,5 @@
 /* eslint-disable camelcase */
 
-const { text } = require("express");
-
 exports.shorthands = undefined;
 
 exports.up = pgm => {
@@ -13,20 +11,31 @@ exports.up = pgm => {
         default: pgm.func("uuid_generate_v4()"),
         comment: "user unique id",
       },
+      firstname: {
+        type: "varchar(100)",
+        notNull: true,
+        comment: "The user firstname",
+      },
+      lastname: {
+        type: "varchar(100)",
+        notNull: true,
+        comment: "The user lastname",
+      },
       email: {
         type: "varchar(100)",
         notNull: true,
         unique: true,
+        comment: "The user email",
       },
-      phone: {
-        type: "uuid",
+      phonenumber: {
+        type: "varchar(20)",
         notNull: true,
-        primaryKey: true,
-        default: pgm.func("uuid_generate_v4()"),
-        comment: "The unique user id",
+        comment: "The user phonenumber",
       },
       password: {
         type: "text",
+        notNull: true,
+        comment: "The user password",
       },
       created_at: {
         type: "timestamptz",
