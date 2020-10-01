@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "start": "nodemon dist/app.js",
-    "migrate": "node-pg-migrate"
+    "migrate": "node-pg-migrate",
+    "compile": "tsc -w"
   },
   "keywords": [],
   "author": "",
