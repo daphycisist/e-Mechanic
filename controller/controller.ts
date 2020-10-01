@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { validateLoginInput, validateSignupInput } from "../validations/validations";
+import {serviceSchema} from "../schema/joiSchemas";
 
 import jwt from "jsonwebtoken";
 import sql from "../utilities/pg-config";
@@ -157,28 +158,8 @@ class Controller {
   }
 }
 
-export { Controller };
+export default  Controller;
 
 
 
-const serviceSchema = Joi.object({
-  title: Joi.string()
-    .min(5)
-    .alter({
-      create: (schema) => schema.required(),
-      update: (schema) => schema.optional(),
-    }),
-  description: Joi.string()
-    .min(20)
-    .max(300)
-    .alter({
-      create: (schema) => schema.required(),
-      update: (schema) => schema.optional(),
-    }),
-  price: Joi.number()
-    .integer()
-    .alter({
-      create: (schema) => schema.required(),
-      update: (schema) => schema.optional(),
-    }),
-});
+
