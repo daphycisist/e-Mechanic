@@ -14,4 +14,27 @@ const loginSchema = Joi.object().keys({
   password: Joi.string().min(7).alphanum().required(),
 });
 
-export { loginSchema, signupSchema };
+
+const serviceSchema = Joi.object({
+  title: Joi.string()
+    .min(5)
+    .alter({
+      create: (schema) => schema.required(),
+      update: (schema) => schema.optional(),
+    }),
+  description: Joi.string()
+    .min(20)
+    .max(300)
+    .alter({
+      create: (schema) => schema.required(),
+      update: (schema) => schema.optional(),
+    }),
+  price: Joi.number()
+    .integer()
+    .alter({
+      create: (schema) => schema.required(),
+      update: (schema) => schema.optional(),
+    }),
+});
+
+export { loginSchema, signupSchema, serviceSchema };
