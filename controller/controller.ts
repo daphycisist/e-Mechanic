@@ -22,7 +22,7 @@ class Controller {
       }
 
       const hashPassword = userExists[0]['password']
-      const validPass = bcrypt.compare(password, hashPassword)
+      const validPass = await bcrypt.compare(password, hashPassword)
       if (!validPass) {
         res.status(400).send('Incorrect email or password')
       }
