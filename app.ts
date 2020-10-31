@@ -1,7 +1,6 @@
-import express, { Request, Response, NextFunction } from 'express'
+import express from 'express'
 import logger from 'morgan'
 import path from 'path'
-import pg from 'pg'
 import indexRouter from './routes/index'
 import userRouter from "./routes/user";
 import serviceRouter from "./routes/service";

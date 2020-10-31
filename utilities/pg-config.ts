@@ -1,5 +1,4 @@
 import postgres from "postgres"
-//import connect, { sql } from '@databases/pg'
 import dotenv from 'dotenv'
 
 
