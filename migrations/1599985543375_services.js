@@ -12,20 +12,22 @@ exports.up = pgm => {
         comment: "Service unique id",
       },
       title: {
-        type: "varchar(100)",
+        type: "varchar(255)",
         notNull: true,
       },
       description: {
-        type: "varchar(100)",
+        type: "varchar(500)",
         notNull: true,
         },
-        price: {
-            type: "integer",
+      price: {
+        type: "integer",
       }
       
     });
 };
 
 exports.down = pgm => {
-    pgm.dropTable("services")
+    pgm.dropTable("services", {
+      ifExists: true
+  })
 };
