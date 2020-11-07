@@ -14,14 +14,19 @@ const signupSchema = Joi.object().keys({
     .min(8)
     .max(100)
     .lowercase().trim().required(),
-  phoneNumber: Joi.string()
-    .regex(/^\d{3}-\d{3}-\d{4}$/)
+  phonenumber: Joi.string()
+    .min(11)
+    .max(14)
     .required(),
+  address: Joi.string()
+    .min(8)
+    .max(100)
+    .lowercase().trim().required(),
   password: Joi.string()
     .min(7)
     .alphanum()
     .required(),
-  confirmPassword: Joi.valid(Joi.ref("password"))
+  confirmpassword: Joi.valid(Joi.ref("password"))
     .required(),
 });
 

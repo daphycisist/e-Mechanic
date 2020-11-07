@@ -2,19 +2,24 @@ import { Request, Response } from "express";
 import { validateRequestInput, validateUUIDInput } from "../validations/validations";
 import sql from "../utilities/pg-config";
 import { requestSchema } from "../schema/joiSchemas";
+
 class Requests {
     static async getAllRequests(req: Request, res: Response) {
         try {
-            const allMechanics = await sql`SELECT * FROM requests`;
+            const allRequests = await sql`SELECT * FROM requests`;
             
             res.status(200).json({
                 message: "Requests data successfully returned",
-                payload: allMechanics
+                payload: allRequests
             })
+
+            if(!allRequests.length){
+                throw new Error("Request data does not exist");
+            }
+
         } catch (error) {
             res.status(400).json({
-                message: "Error fetching Requests data",
-                payload: error.message
+                message: error.message
             });
         }
     }
@@ -34,7 +39,7 @@ class Requests {
             })
         } catch (error) {
             res.status(400).json({
-                message: "Error fetching Requests data. " + error.message
+                message: error.message
             });
         }
     }
@@ -106,6 +111,26 @@ class Requests {
            res.status(200).json({
                message: "Request deleted successfully",
                payload: deletedRequest
+           })
+        } catch (error) {
+            res.status(400).json({
+                message: error.message
+            })
+        }
+    }
+
+    static async assignMechanic(req: Request, res: Response) {
+        try {
+            const id = req.params.id
+            const request = await sql`DELETE FROM requests WHERE id = ${id} RETURNING *`;
+
+            if(!request.length){
+                throw new Error("Request does not exist");
+            }
+
+           res.status(200).json({
+               message: "Request deleted successfully",
+               payload: request
            })
         } catch (error) {
             res.status(400).json({
