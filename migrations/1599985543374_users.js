@@ -32,6 +32,11 @@ exports.up = pgm => {
         notNull: true,
         comment: "The user phonenumber",
       },
+      address: {
+        type: "varchar(100)",
+        notNull: true,
+        comment: "The user address",
+      },
       password: {
         type: "text",
         notNull: true,
@@ -51,5 +56,7 @@ exports.up = pgm => {
 };
 
 exports.down = pgm => {
-    pgm.dropTable("users")
+    pgm.dropTable("users", {
+      ifExists: true
+  })
 };
