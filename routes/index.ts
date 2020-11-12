@@ -1,7 +1,5 @@
 import express, { Request, Response, NextFunction } from 'express'
 
-import database from '../utilities/pg-config'
-
 const router = express.Router()
 
 

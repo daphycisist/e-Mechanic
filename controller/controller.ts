@@ -111,6 +111,27 @@ class Controller {
     }
   }
 
+  static async getservice(id: string) {
+    const { error, value } = Joi.string().uuid({ version: "uuidv4" }).validate(id)
+    
+    if (error) throw error;
+
+    try {
+      return {
+        message: "service returned successfully",
+        status: 200,
+        payload: await sql`SELECT * FROM services WHERE id = ${value}`,
+      }
+      
+    } catch (error) {
+      return {
+        message: "Error getting the service",
+        status: 400,
+        payload: error
+      }
+    }
+  }
+
   static async updateService(id: string, data: Record<string, unknown>) {
     const { error: invalidUUiD, value: UUID } = Joi.string()
       .uuid({ version: "uuidv4" })
@@ -136,24 +157,27 @@ class Controller {
       return {
         message: "unable to update service",
         status: 400,
-        paylaod: error,
+        payload: error,
       };
     }
   }
 
   static async deleteService(id: string) {
+    const { error: uuidError, value } = Joi.string().uuid({ version: "uuidv4" }).validate(id);
+    if (uuidError) throw uuidError
+    
     try {
-      const deleteItem = await sql`DELETE FROM services WHERE id =${id} RETURNING *`;
+      const deleteItem = await sql`DELETE FROM services WHERE id =${value} RETURNING *`;
       return {
         message: "Service deleted successfully",
         status: 200,
-        paylaod: deleteItem,
+        payload: deleteItem,
       };
     } catch (error) {
       return {
         message: "Error while trying to delete Service",
         status: 400,
-        paylaod: error,
+        payload: error,
       };
     }
   }

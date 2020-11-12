@@ -1,7 +1,6 @@
 import express from 'express'
 import logger from 'morgan'
 import path from 'path'
-
 import indexRouter from './routes/index'
 import userRouter from "./routes/user";
 import serviceRouter from "./routes/service";
@@ -23,11 +22,14 @@ app.use("/", serviceRouter);
 app.use("/mechanic", mechanicRouter);
 app.use("/request", requestRouter);
 
-
 const port = process.env.PORT || 8000;
 
-app.listen(port, () => {
-    console.log(`Server started on http://localhost:${port}`)
-})
+if (process.env.NODE_ENV !== 'test') {
+    
+    app.listen(port, () => {
+        console.log(`Server started on http://localhost:${port}`)
+    })
+    
+}
 
 export default app;

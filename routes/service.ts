@@ -9,6 +9,12 @@ router.get('/services', async(req, res, _next) => {
     return res.status(services.status).send(services)
 })
 
+router.get('/services/:id', async (req, res, _next) => {
+    const id = req.params.id;
+    const service = await Controller.getservice(id);
+    res.status(service.status).send(service)
+})
+
 
 router.post('/services/post', async(req, res, _next) => {
     const post = req.body
