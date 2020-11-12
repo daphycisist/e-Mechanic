@@ -18,11 +18,14 @@ app.use("/", indexRouter);
 app.use("/users", userRouter);
 app.use("/", serviceRouter);
 
-
 const port = process.env.PORT || 8000;
 
-app.listen(port, () => {
-    console.log(`Server started on http://localhost:${port}`)
-})
+if (process.env.NODE_ENV !== 'test') {
+    
+    app.listen(port, () => {
+        console.log(`Server started on http://localhost:${port}`)
+    })
+    
+}
 
 export default app;
