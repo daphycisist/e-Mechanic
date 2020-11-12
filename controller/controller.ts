@@ -51,7 +51,8 @@ class Controller {
         firstname,
         lastname,
         email,
-        phoneNumber,
+        phonenumber,
+        address,
         password,
       } = validUserInput;
 
@@ -67,7 +68,7 @@ class Controller {
           return res.status(401).send("Authentication Failure");
         }
 
-        const user = await sql`INSERT into users ( firstname, lastname, email, phonenumber, password) VALUES(${firstname}, ${lastname}, ${email}, ${phoneNumber}, ${hash}) RETURNING *`;
+        const user = await sql`INSERT into users ( firstname, lastname, email, phonenumber, address, password) VALUES(${firstname}, ${lastname}, ${email}, ${phonenumber}, ${address}, ${hash}) RETURNING *`;
         res.status(201).send(user);
       });
     } catch (error) {

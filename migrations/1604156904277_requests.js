@@ -11,7 +11,7 @@ exports.up = pgm => {
             default: pgm.func("uuid_generate_v4()"),
             comment: "request unique id",
         },
-        type: {
+        servicetype: {
             type: "varchar(20)",
             notNull: true
         },
