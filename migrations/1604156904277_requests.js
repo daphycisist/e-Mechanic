@@ -32,7 +32,7 @@ exports.up = pgm => {
         },
         open: {
             type: "boolean",
-            default: false
+            default: true
         },
         inprogress: {
             type: "boolean",

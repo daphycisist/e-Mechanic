@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: false }))
 
 app.use("/", indexRouter);
 app.use("/users", userRouter);
-app.use("/", serviceRouter);
+app.use("/services", serviceRouter);
 app.use("/mechanic", mechanicRouter);
 app.use("/request", requestRouter);
 

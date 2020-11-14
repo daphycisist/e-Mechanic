@@ -13,7 +13,11 @@ exports.up = pgm => {
             default: pgm.func("uuid_generate_v4()"),
             comment: "request unique id",
         },
-        name: {
+        firstname: {
+            type: 'varchar(100)',
+            notNull: true,
+        },
+        lastname: {
             type: 'varchar(100)',
             notNull: true,
         },
@@ -24,6 +28,7 @@ exports.up = pgm => {
         phonenumber: {
             type: 'varchar(15)',
             notNull: true,
+            unique: true,
         },
     })
 };
